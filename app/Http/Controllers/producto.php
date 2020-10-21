@@ -35,4 +35,7 @@ class producto extends Controller
         ->get();
         return $com_pro;
     }
+    public function guardarproducto(){
+
+    }
 }
