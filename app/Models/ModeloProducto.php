@@ -15,8 +15,8 @@ class ModeloProducto extends Model
     public $timestamps = false;
     protected $fillable = ['nombre_producto'];
 
-    public function productos()
+    public function comentario()
     {
-        return $this->hasMany('Models/ModeloComentario');
+        return $this->hasMany('App\Models\ModeloComentario','id_producto');
     }
 }

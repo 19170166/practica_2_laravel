@@ -11,7 +11,7 @@ class ProductoController extends Controller
 {
     public function mostrarproducto($id=null){
         if($id){
-            return response()->json(["producto",ModeloProducto::find($id)]);
+            return response()->json(["producto",ModeloProducto::all('id','nombre_producto')->find($id)]);
         }
         return response()->json(["productos",ModeloProducto::all()]);
         

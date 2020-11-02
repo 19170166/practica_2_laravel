@@ -14,9 +14,9 @@ class CreateComentariosTable extends Migration
     public function up()
     {
         Schema::create('comentarios', function (Blueprint $table) {
-            $table->integer('id',10);
+            $table->id();
             $table->string('comentario',100);
-            $table->string('usuario',20);
+            $table->foreignId('id_persona')->references('id')->on('personas');
             $table->foreignId('id_producto')->references('id')->on('productos');
         });
     }
@@ -29,6 +29,7 @@ class CreateComentariosTable extends Migration
     public function down()
     {
         schema::dropForeign(['id_producto']);
+        schema::dropForeign('id_persona');
         Schema::dropIfExists('comentarios');
         
     }

@@ -13,10 +13,16 @@ class ModeloComentario extends Model
      */
     protected $table = 'comentarios';
     public $timestamps = false;
-    protected $fillable = ['comentario','usuario','id_producto'];
+    protected $fillable = ['comentario','id_persona','id_producto'];
     
-    public function comentarios()
+    public function producto()
     {
-        return $this->hasOne('Models\ModeloProducto');
+        //return $this->belongsTo('App\Models\ModeloProducto','id');
+        return $this->hasOne('App\Models\ModeloProducto','id');
+    }
+    public function persona()
+    {
+        //return $this->belongsTo('App\Models\ModeloPersona','id');
+        return $this->hasOne('App\Models\ModeloPersona','id');
     }
 }
