@@ -17,6 +17,7 @@ class ModeloPersona extends Model
     public function comentario(){
         return $this->hasMany('App\Models\ModeloComentario','id_persona');
     }
+    
     public function getAuthIdentifier()
     {
         return $this->getKey();

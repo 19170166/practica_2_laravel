@@ -17,7 +17,7 @@ class ComentarioController extends Controller
             //return response()->json(["Comentarios",ModeloPersona::find($usuario)]);
             $com_pro=DB::table('personas')
             ->join('comentarios','comentarios.id_persona','=','personas.id')
-            ->join('productos','productos.id','=','comentarios.id_persona')
+            ->join('productos','productos.id','=','comentarios.producto')
             ->select('comentarios.comentario','personas.nombre','productos.nombre_producto')
             ->where('personas.id','=',$usuario)
             ->get();
@@ -30,14 +30,21 @@ class ComentarioController extends Controller
         return $com_pro->toJson();
     }
 
-    public function mostrarcomentario2($producto){
-        $com_pro=DB::table('personas')
-            ->join('comentarios','comentarios.id_persona','=','personas.id')
-            ->join('productos','productos.id','=','comentarios.id_persona')
+    public function mostrarcomentario2($producto=null){
+        $com_pro=ModeloComentario::all(); 
+
+        if($producto=null){
+            $com_pro=DB::table('productos')
+            ->join('comentarios','comentarios.id_producto','=','productos.id')
+            ->join('personas','personas.id','=','comentarios.id_persona')
             ->select('comentarios.comentario','personas.nombre','productos.nombre_producto')
             ->where('productos.id','=',$producto)
             ->get();
             return $com_pro->toJson();
+        }
+        $com_pro->load('persona','producto');
+        return $com_pro->toJson();
+
     }
 
 

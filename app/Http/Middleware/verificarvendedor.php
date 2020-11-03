@@ -21,6 +21,4 @@ class verificarvendedor
         return $next($request);
     }
 
-    public function terminate
-
 }
