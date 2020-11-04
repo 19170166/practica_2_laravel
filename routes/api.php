@@ -42,7 +42,7 @@ Route::put('/modificarproducto/{id}','ProductoController@modificarproducto');
 Route::put('/modificarcomentario/{id}','ComentarioController@modificarcomentario');
 Route::put('/modificarpersona/{id}','PersonaController@modificarpersona');
 Route::put('/modificar/producto/{id}','UsuarioController@');
-Route::put('/modificar/permisos','UsuarioController@modificarpermisos');
+//Route::put('/modificar/permisos','UsuarioController@modificarpermisos');
 
 
 Route::delete('/borrarproducto/{id}','ProductoController@borrarproducto');
@@ -51,4 +51,5 @@ Route::delete('/borrarpersona/{id}','PersonaController@borrarpersona');
 Route::middleware('auth:sanctum')->delete('/logout','UsuarioController@logout');
 
 //middleware
+Route::put('/modificar/permiso','UsuarioController@modificarpermisos')->middleware('ckeckadmin');
 Route::post('/loginadmin','UsuarioController@iniciaradmin')->middleware('ckeckadmin');

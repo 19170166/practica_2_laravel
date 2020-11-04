@@ -35,14 +35,15 @@ class UsuarioController extends Controller
     }
 
     public function modificarpermisos(Request $request){
-        if($request->user()->tokenCan('administrador')){
-            $tok=ModeloToken::where('email',$request->correo)->first();
-            return response()->json($tok);
-            $tok->abilities=$request->abilities;
+        //if($request->user()->tokenCan('administrador')){
+            $tok=ModeloToken::where('name',$request->correo_usuario)->first();
+            //return response()->json($tok);
+            $tok->update(['abilities'=>$request->permiso]);
             if($tok->save()){
             return response()->json('permiso modificado');
             }
-        }
+        //}
+        //return abort(400);
     }
 
     //mostrar productos
