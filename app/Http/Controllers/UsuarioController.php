@@ -54,8 +54,6 @@ class UsuarioController extends Controller
     //agregar producto
     public function agregarpro(Request $request){
         //dd($request);
-        $user=new ModeloPersona();
-        dd($user->tokens);
         $producto=new ModeloProducto();
         if($request->user()->tokenCan('usuario:vendedor')){
             $producto->nombre_producto=$request->nombre_producto;

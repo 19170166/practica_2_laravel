@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,6 @@ Route::post('/agregarcomentario','ComentarioController@agregarcomentario');
 Route::post('/agregarpersona','PersonaController@agregarpersona');
 Route::post('/registro','UsuarioController@registro');
 Route::post('/login','UsuarioController@login');
-Route::post('/loginadmin','UsuarioController@iniciaradmin');
 Route::post('/registrar/producto','UsuarioController@agregarpro');
 Route::post('/loginvendedor','UsuarioController@loginvendedor');
 
@@ -49,3 +49,6 @@ Route::delete('/borrarproducto/{id}','ProductoController@borrarproducto');
 Route::delete('/borrarcomentario/{id}','ComentarioController@borrarcomentario');
 Route::delete('/borrarpersona/{id}','PersonaController@borrarpersona');
 Route::middleware('auth:sanctum')->delete('/logout','UsuarioController@logout');
+
+//middleware
+Route::post('/loginadmin','UsuarioController@iniciaradmin')->middleware('ckeckadmin');
